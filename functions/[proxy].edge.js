@@ -8,13 +8,13 @@ export default async function handler(req, context) {
     // const res = await fetch(`https://demo-site-edge.devcontentstackapps.com/users`);
     const newUrl = new URL('/users', parsedUrl);
 
-    const modifiedRequest = new Request(req, {
-      cf:{
-        cacheTtl: 0,
-      }
- })
+    const modifiedRequest = new Request(newUrl, req)
 
-    const res = await fetch(newUrl.href, modifiedRequest);
+    const res = await fetch(request, {
+      cf:{
+        cacheTtl: -1,
+      }
+    });
     let response = await res.json();
     response = {
       ...response,
