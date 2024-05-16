@@ -4,8 +4,8 @@ export default async function handler(req, context) {
   const envVariable = context.env.TEST_KEY;
 
   if (route === '/test') {
-    //const res = await fetch(`https://random-data-api.com/api/v2/appliances`);
-    const res = await fetch(`https://demo-site-edge.devcontentstackapps.com/users`);
+    const res = await fetch(`https://random-data-api.com/api/v2/appliances`);
+    // const res = await fetch(`https://demo-site-edge.devcontentstackapps.com/users`);
     let response = await res.json();
     response = {
       ...response,
