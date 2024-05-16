@@ -3,33 +3,33 @@ export default async function handler(req, context) {
   const route = parsedUrl.pathname;
   const envVariable = context.env.TEST_KEY;
 
-  if (route === '/test') {
+  if (route === '/without-cacheTtl') {
     // const res = await fetch(`https://random-data-api.com/api/v2/appliances`);
-    // const res = await fetch(`https://demo-site-edge.devcontentstackapps.com/users`);
     const newUrl = new URL('/users', parsedUrl);
 
     const modifiedRequest = new Request(newUrl, req)
-
-    // const res = await fetch(modifiedRequest, {
-    //   cf:{
-    //     cacheTtl: -1,
-    //   }
-    // });
     const res = await fetch(modifiedRequest);
     let response = await res.json();
     response = {
       ...response,
       envVariableValue: envVariable,
     }
-    return new Response(JSON.stringify(response), {
-      headers: {
-        'X-Message': 'Change response headers',
-        // "Cache-Control": "no-cache=no-cache",
-        // "Cache-Control": "max-age=0, must-revalidate"
-      }
-    })
-    
+    return new Response(JSON.stringify(response))
   }
 
+  if (route === '/with-cacheTtl') {
+    const modifiedRequest = new Request(new URL('/users', parsedUrl), req)
+    const res = await fetch(modifiedRequest, {
+      cf:{
+        cacheTtl: -1,
+      }
+    });
+    let response = await res.json();
+    response = {
+      ...response,
+      envVariableValue: envVariable,
+    }
+    return new Response(JSON.stringify(response))
+  }
   return fetch(req)
 }
