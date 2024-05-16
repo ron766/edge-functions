@@ -7,7 +7,14 @@ export default async function handler(req, context) {
     // const res = await fetch(`https://random-data-api.com/api/v2/appliances`);
     // const res = await fetch(`https://demo-site-edge.devcontentstackapps.com/users`);
     const newUrl = new URL('/users', parsedUrl);
-    const res = await fetch(newUrl.href, req);
+
+    const modifiedRequest = new Request(req, {
+      cf:{
+        cacheTtl: 0,
+      }
+ })
+
+    const res = await fetch(newUrl.href, modifiedRequest);
     let response = await res.json();
     response = {
       ...response,
