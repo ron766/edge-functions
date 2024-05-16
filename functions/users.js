@@ -8,7 +8,7 @@ export default function handler(request, response) {
 
   console.log("query params", request.query)
 
-  response.setHeader('Cache-Control', 'max-age=120');
+  // response.setHeader('Cache-Control', 'max-age=120');
 
   response.status(200).send({
     body: request.body,
