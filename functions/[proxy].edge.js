@@ -29,7 +29,11 @@ export default async function handler(req, context) {
     //     // "Cache-Control": "max-age=0, must-revalidate"
     //   }
     // })
-    return fetch(modifiedRequest);
+    return fetch(modifiedRequest, {
+      cf:{
+        cacheTtl: -1,
+      }
+    });
   }
 
   return fetch(req)
