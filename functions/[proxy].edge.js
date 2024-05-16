@@ -15,20 +15,21 @@ export default async function handler(req, context) {
     //     cacheTtl: -1,
     //   }
     // });
-    const res = await fetch(modifiedRequest);
-    let response = await res.json();
-    response = {
-      ...response,
-      time: new Date(),
-      envVariableValue: envVariable,
-    }
-    return new Response(JSON.stringify(response), {
-      headers: {
-        'X-Message': 'Change response headers',
-        // "Cache-Control": "no-cache=no-cache",
-        // "Cache-Control": "max-age=0, must-revalidate"
-      }
-    })
+    // const res = await fetch(modifiedRequest);
+    // let response = await res.json();
+    // response = {
+    //   ...response,
+    //   time: new Date(),
+    //   envVariableValue: envVariable,
+    // }
+    // return new Response(JSON.stringify(response), {
+    //   headers: {
+    //     'X-Message': 'Change response headers',
+    //     // "Cache-Control": "no-cache=no-cache",
+    //     // "Cache-Control": "max-age=0, must-revalidate"
+    //   }
+    // })
+    return fetch(modifiedRequest);
   }
 
   return fetch(req)
