@@ -10,7 +10,7 @@ export default async function handler(req, context) {
 
     const modifiedRequest = new Request(newUrl, req)
 
-    const res = await fetch(request, {
+    const res = await fetch(modifiedRequest, {
       cf:{
         cacheTtl: -1,
       }
