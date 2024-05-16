@@ -4,7 +4,7 @@ export default async function handler(req, context) {
   const envVariable = context.env.TEST_KEY;
 
   if (route === '/users-with-edge-fetch') {
-    const res = await fetch(`/users`);
+    const res = await fetch(`https://demo-site-edge.devcontentstackapps.com/users`);
     let response = await res.json();
     response = {
       ...response,
