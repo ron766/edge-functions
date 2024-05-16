@@ -7,7 +7,7 @@ export default async function handler(req, context) {
     const modifiedRequest = new Request(new URL('/users', parsedUrl), req)
     const res = await fetch(modifiedRequest, {
       cf:{
-        cacheTtl: -1,
+        cacheTtl: 0,
       }
     });
     let response = await res.json();
