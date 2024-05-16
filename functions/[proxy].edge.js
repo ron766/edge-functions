@@ -10,11 +10,12 @@ export default async function handler(req, context) {
 
     const modifiedRequest = new Request(newUrl, req)
 
-    const res = await fetch(modifiedRequest, {
-      cf:{
-        cacheTtl: -1,
-      }
-    });
+    // const res = await fetch(modifiedRequest, {
+    //   cf:{
+    //     cacheTtl: -1,
+    //   }
+    // });
+    const res = await fetch(modifiedRequest);
     let response = await res.json();
     response = {
       ...response,
