@@ -23,7 +23,8 @@ export default async function handler(req, context) {
     }
     return new Response(JSON.stringify(response), {
       headers: {
-        'X-Message': 'Change response headers'
+        'X-Message': 'Change response headers',
+        "Cache-Control": "no-cache=no-cache"
       }
     })
   }
