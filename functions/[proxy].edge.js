@@ -5,12 +5,11 @@ export default async function handler(req, context) {
 
   if (route === '/test') {
     const modifiedRequest = new Request(new URL('/users', parsedUrl), req)
-    // const res = await fetch(modifiedRequest, {
-    //   cf:{
-    //     cacheTtl: 0,
-    //   }
-    // });
-    const res = await fetch(modifiedRequest);
+    const res = await fetch(modifiedRequest, {
+      cf:{
+        cacheTtl: 30,
+      }
+    });
     let response = await res.json();
     response = {
       ...response,
