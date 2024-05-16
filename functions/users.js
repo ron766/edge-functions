@@ -11,6 +11,7 @@ export default function handler(request, response) {
   response.status(200).send({
     body: request.body,
     users,
-    query: request.query
+    query: request.query,
+    time: new Date(),
   });
 }

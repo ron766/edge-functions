@@ -3,8 +3,8 @@ export default async function handler(req, context) {
   const route = parsedUrl.pathname;
   const envVariable = context.env.TEST_KEY;
 
-  if (route === '/test') {
-    const res = await fetch(`https://random-data-api.com/api/v2/appliances`);
+  if (route === '/users-with-edge-fetch') {
+    const res = await fetch(`/users`);
     let response = await res.json();
     response = {
       ...response,
