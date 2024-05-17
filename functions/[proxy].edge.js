@@ -20,5 +20,18 @@ export default async function handler(req, context) {
     })
   }
 
+  if (route === '/demo') {
+    response = {
+      time: new Date(),
+      envVariableValue: envVariable,
+      changes: 'edge working for /demo'
+    }
+    return new Response(JSON.stringify(response), {
+      headers: {
+        'X-Message': 'Change response headers'
+      }
+    })
+  }
+
   return fetch(req)
 }
