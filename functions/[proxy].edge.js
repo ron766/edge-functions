@@ -16,5 +16,7 @@ export default async function handler(req, context) {
     }
     return new Response(JSON.stringify(response))
   }
-  return fetch(req)
+
+  const modifiedRequest = new Request(req, {cf:{cacheTtl:30}})
+  return fetch(modifiedRequest)
 }
