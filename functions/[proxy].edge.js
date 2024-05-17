@@ -21,7 +21,7 @@ export default async function handler(req, context) {
   }
 
   if (route === '/demo') {
-    response = {
+    const response = {
       time: new Date(),
       envVariableValue: envVariable,
       changes: 'edge working for /demo'
@@ -34,7 +34,7 @@ export default async function handler(req, context) {
   }
 
     if (route === '/testedge') {
-    response = {
+    cosnt response = {
       time: new Date(),
       envVariableValue: envVariable,
       changes: 'edge working for /testedge'
