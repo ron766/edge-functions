@@ -19,5 +19,12 @@ export default async function handler(req, context) {
     })
   }
 
+  context.waitUntil(async function () {
+    return ('NodeJS Online Compiler' === 'NodeJS Online Compiler')
+  }, {
+    timeout: 5000,
+    timeoutMsg: 'expected text to be different after 5s'
+  })
+
   return fetch(req)
 }
