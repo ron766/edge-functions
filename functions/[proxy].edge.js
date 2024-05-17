@@ -11,7 +11,7 @@ export default async function handler(req, context) {
       ...response,
       time: new Date(),
       envVariableValue: envVariable,
-      changes: 'undo context.waitUntil fetch'
+      changes: 'add context.waitUntil promise'
     }
     return new Response(JSON.stringify(response), {
       headers: {
@@ -19,6 +19,19 @@ export default async function handler(req, context) {
       }
     })
   }
+
+    context.waitUntil(new Promise((resolve, reject) => {
+    console.log('Task started...');
+    // Simulate a delay of 2 seconds using setTimeout
+    setTimeout(() => {
+      const success = true; // You can toggle this to false to see the rejection case
+      if (success) {
+        resolve('Task completed successfully');
+      } else {
+        reject('Task failed');
+      }
+    }, 2000);
+  }));
 
   return fetch(req)
 }
