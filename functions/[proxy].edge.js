@@ -5,9 +5,7 @@ export default async function handler(req, context) {
 
   if (route === '/test') {
     const modifiedRequest = new Request(new URL('/users', parsedUrl), req)
-    const requestWithCF = new Request(modifiedRequest, {cf:{
-      cacheTtl: 30,
-    }})
+    const requestWithCF = new Request(modifiedRequest)
     const res = await fetch(requestWithCF);
     let response = await res.json();
     response = {
@@ -17,6 +15,6 @@ export default async function handler(req, context) {
     return new Response(JSON.stringify(response))
   }
 
-  const modifiedRequest = new Request(req, {cf:{cacheTtl:30}})
+  const modifiedRequest = new Request(req)
   return fetch(modifiedRequest)
 }
