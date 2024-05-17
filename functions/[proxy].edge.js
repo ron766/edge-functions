@@ -5,12 +5,13 @@ export default async function handler(req, context) {
   const envVariable = context.env.TEST_KEY;
 
   if (route === '/test') {
-    const res = await fetch(`https://random-data-api.com/api/v2/appliances`);
+    const res = context.waitUntil(fetch(`https://random-data-api.com/api/v2/appliances`));
     let response = await res.json();
     response = {
       ...response,
       time: new Date(),
       envVariableValue: envVariable,
+      changes: 'context.waitUntil fetch'
     }
     return new Response(JSON.stringify(response), {
       headers: {
@@ -18,13 +19,6 @@ export default async function handler(req, context) {
       }
     })
   }
-
-  context.waitUntil(async function () {
-    return ('NodeJS Online Compiler' === 'NodeJS Online Compiler')
-  }, {
-    timeout: 5000,
-    timeoutMsg: 'expected text to be different after 5s'
-  })
 
   return fetch(req)
 }
