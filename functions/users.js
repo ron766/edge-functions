@@ -7,6 +7,7 @@ export default function handler(request, response) {
   ];
 
   console.log("query params", request.query)
+  console.log("headers", request.headers)
 
   // response.setHeader('Cache-Control', 'max-age=120');
 
