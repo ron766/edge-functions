@@ -2,6 +2,7 @@ export default async function handler(req, context) {
   const parsedUrl = new URL(req.url);
   const route = parsedUrl.pathname;
   const envVariable = context.env.TEST_KEY;
+  console.log(req.headers.get('CF-Connecting-IP'))
 
   if (route === '/test') {
     const modifiedRequest = new Request(new URL('/users', parsedUrl), req)
