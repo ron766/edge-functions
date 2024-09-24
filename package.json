@@ -5,7 +5,7 @@
   "packageManager": "pnpm@9.11",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "ls | grep -E 'yarn.lock|package-lock.json|pnpm-lock.yaml' && next build",
     "start": "next start",
     "lint": "next lint"
   },
